@@ -1,0 +1,10 @@
+[project]
+name = "human-ml-mask-api-parser"
+version = "0.1.0"
+description = "api for parsing human ml masks"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.128.0",
+    "opencv-python>=4.12.0.88",
+]
