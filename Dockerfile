@@ -17,7 +17,7 @@ COPY app/ ./app/
 COPY pyproject.toml ./pyproject.toml
 COPY uv.lock ./uv.lock
 
-COPY schp/ /schp
+COPY schp/ ./schp
 
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart Pillow numpy opencv-python
 
@@ -29,4 +29,4 @@ ADD schp/exp-schp-201908301523-atr.pth /schp/exp-schp-201908301523-atr.pth
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
