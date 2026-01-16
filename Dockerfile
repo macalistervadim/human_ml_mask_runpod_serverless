@@ -14,7 +14,6 @@ WORKDIR /app
 
 
 COPY app/ ./app/
-COPY main.py ./main.py
 COPY pyproject.toml ./pyproject.toml
 COPY uv.lock ./uv.lock
 

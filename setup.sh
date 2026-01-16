@@ -1,17 +1,27 @@
 #!/bin/bash
 set -e
 
-# Настройки
 MAIN_REPO="https://github.com/macalistervadim/human_ml_mask_api_parser.git"
+MODEL_ID="1ruJg4lqR_jgQPj-9K0PP-L2vJERYOxLP"
+MODEL_NAME="exp-schp-201908301523-atr.pth"
 
-echo "1️⃣ Cloning main repository..."
-git clone "$MAIN_REPO"
-cd human_ml_mask_api_parser
 
-echo "2️⃣ Initializing and updating submodules..."
+echo "Initializing and updating submodules..."
 git submodule update --init --recursive
 
-echo "3️⃣ Starting the project with Docker..."
+echo "Downloading ATR model..."
+MODEL_PATH="schp/$MODEL_NAME"
+
+if [ ! -f "$MODEL_PATH" ]; then
+    pip install --quiet gdown
+
+    gdown --id $MODEL_ID -O "$MODEL_PATH"
+else
+    echo "Model already exists, skipping download."
+fi
+
+
+echo "Starting project with Docker..."
 make up
 
-echo "✅ Project is running! FastAPI should be available at http://localhost:8000"
+echo "✅ Setup complete! FastAPI should be available at http://localhost:8000"

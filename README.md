@@ -63,18 +63,20 @@ The fastest way is Docker Compose:
 Stop
    docker-compose down
 
+Alternative (local, without Docker):
+   chmod +x setup.sh && ./setup.sh
+   uv run python -m app.main
+
 ## Local Installation
-Local setup without Docker. This project uses uv for dependency management.
+Local setup without Docker using the provided setup script.
 
-1) Install uv (if not installed):
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   # then restart your shell
+1) Make the script executable (once):
+   chmod +x setup.sh
 
-2) Install dependencies
-   uv sync
+2) Run the setup:
+   ./setup.sh
 
-3) Activate venv (if needed):
-   source .venv/bin/activate
+This script installs dependencies, prepares the environment and downloads required assets (if applicable).
 
 ## Run the Service
 - Locally (via uv):
@@ -107,6 +109,7 @@ The schp/demo/ directory contains example images to quickly verify the pipeline.
 
 Useful commands:
 - Docker build: docker build -t human-ml-mask-api-parser:latest .
+- Local setup: chmod +x setup.sh && ./setup.sh
 - Local run: uv run python -m app.main
 - Compose: docker-compose up --build
 
